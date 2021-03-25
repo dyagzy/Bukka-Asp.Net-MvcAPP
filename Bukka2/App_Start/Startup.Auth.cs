@@ -58,11 +58,11 @@ namespace Bukka2
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "20370764061-r1ju55nssjl1aa7lr1rpea5kg0qklpdb.apps.googleusercontent.com",
+                ClientSecret = "6__-MeDgWU7UlsrclWuGp9Uu"
+            });
         }
     }
 }

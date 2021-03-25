@@ -6,7 +6,10 @@
 <script type="text/javascript">
     $(document).ready(function () {
 
-        $("Food").val();
+        $("#Food").change(function () {
+            var foodId = $("#Food").val();
+            GetFoodUnitPrice(foodId);
+        });
     });
 
     function GetFoodUnitPrice(foodId) {
@@ -15,7 +18,14 @@
             type: 'GET',
             dataType: 'JSON',
             contentType: 'application/json; charset= utf-8',
-            data: {foodId:food}
+            data: { foodId: food },
+            url: '/home/getItemUnitPrice',
+            success: function (data) {
+                $("#txtUnitPrice").val(parseFloat(data).toFixed(2));
+            },
+            error: function () {
+                alert("There is some problem to get the unit Price.");
+            }
         });
     }
 </script>
@@ -49,12 +59,11 @@
 
 </style>
 <fieldset>
-    <legend>
-       MamaPut Restaurant
-    </legend>
+    <legend>MamaPut Restaurant</legend>
+     
     <div class="container">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="form-group">
                     Customer :
                     @Html.DropDownList("Customer", new SelectList(Model.Item1, "Value", "Text"),
@@ -62,7 +71,7 @@
                 </div>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="form-group">
                     Payment  Type :
                     @Html.DropDownList("PaymentType", new SelectList(Model.Item3, "Value", "Text"),
@@ -101,27 +110,26 @@
         </div>
 
         <div class="row">
-            
+
             <div class="col-md-4">
                 <div class="form-group">
                     Discount:
                     <input type="text" id="txtDiscount" value="0.00" name="Discount" class="form-control" />
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="form-group">
                     Total:
                     <input type="text" readonly="readonly" id="txtTotal" value="0.00" name="Total" class="form-control" />
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="form-group">
                     <input type="button" style="margin-top: 20px" value="Add to List" name="AddToList" id="btnAddToList" class="btn btn-success" />
                 </div>
             </div>
         </div>
+       
     </div>
 </fieldset>
 <fieldset>

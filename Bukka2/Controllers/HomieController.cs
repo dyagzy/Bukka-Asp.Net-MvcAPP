@@ -1,4 +1,5 @@
-﻿using Bukka2.Repository.Service;
+﻿using Bukka2.Models;
+using Bukka2.Repository.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,11 @@ namespace Bukka2.Controllers
 {
     public class HomieController : Controller
     {
+        private BukkaDbEntities _objBukkaDbEntities;
+        public HomieController()
+        {
+            _objBukkaDbEntities = new BukkaDbEntities();
+        }
         // GET: Homie
         public ActionResult Index()
         {
@@ -23,6 +29,14 @@ namespace Bukka2.Controllers
             return View(objMultiple);
            
 
+        }
+
+        [HttpGet]
+        public JsonResult getItemUnitPrice(int foodId)
+        {
+          decimal unitPrice = _objBukkaDbEntities.Foods.SingleOrDefault(model => model.FoodId == foodId).FoodPrice;
+
+            return Json(unitPrice, JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)
