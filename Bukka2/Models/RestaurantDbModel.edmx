@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BukkaDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustoemrId" />
+          </Key>
+          <Property Name="CustoemrId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Food">
+          <Key>
+            <PropertyRef Name="FoodId" />
+          </Key>
+          <Property Name="FoodId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FoodPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="FoodName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PaymentType">
+          <Key>
+            <PropertyRef Name="PaymentTypeId" />
+          </Key>
+          <Property Name="PaymentTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaymentTypeName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="BukkaDbModelStoreContainer">
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="Master" store:Type="Tables" />
+          <EntitySet Name="Food" EntityType="Self.Food" Schema="Master" store:Type="Tables" />
+          <EntitySet Name="PaymentType" EntityType="Self.PaymentType" Schema="Master" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BukkaDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustoemrId" />
+          </Key>
+          <Property Name="CustoemrId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Food">
+          <Key>
+            <PropertyRef Name="FoodId" />
+          </Key>
+          <Property Name="FoodId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FoodPrice" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="FoodName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PaymentType">
+          <Key>
+            <PropertyRef Name="PaymentTypeId" />
+          </Key>
+          <Property Name="PaymentTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaymentTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="BukkaDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="Foods" EntityType="Self.Food" />
+          <EntitySet Name="PaymentTypes" EntityType="Self.PaymentType" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BukkaDbModelStoreContainer" CdmEntityContainer="BukkaDbEntities">
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="BukkaDbModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="CustoemrId" ColumnName="CustoemrId" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Foods">
+            <EntityTypeMapping TypeName="BukkaDbModel.Food">
+              <MappingFragment StoreEntitySet="Food">
+                <ScalarProperty Name="FoodId" ColumnName="FoodId" />
+                <ScalarProperty Name="FoodPrice" ColumnName="FoodPrice" />
+                <ScalarProperty Name="FoodName" ColumnName="FoodName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentTypes">
+            <EntityTypeMapping TypeName="BukkaDbModel.PaymentType">
+              <MappingFragment StoreEntitySet="PaymentType">
+                <ScalarProperty Name="PaymentTypeId" ColumnName="PaymentTypeId" />
+                <ScalarProperty Name="PaymentTypeName" ColumnName="PaymentTypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,160 @@
+﻿@model Tuple<IEnumerable<SelectListItem>, IEnumerable<SelectListItem>, IEnumerable<SelectListItem>>
+@{
+    ViewBag.Title = "Index";
+}
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("Food").val();
+    });
+
+    function GetFoodUnitPrice(foodId) {
+        $.ajax({
+            async: true,
+            type: 'GET',
+            dataType: 'JSON',
+            contentType: 'application/json; charset= utf-8',
+            data: {foodId:food}
+        });
+    }
+</script>
+
+
+<style>
+    fieldset {
+        border: 1px solid #ddd !important;
+        margin: 0;
+        xmin-width: 0;
+        padding: 10px;
+        position: relative;
+        border-radius: 4px;
+        margin-top: 10px;
+        background-color: #0094ff;
+        padding-left: 10px !important;
+    }
+    legend {
+        font-size: 14px;
+        font-weight: bold;
+        margin-bottom: 0px;
+        width: 35%;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 5px 5px 5px 10px;
+        background-color: #0094ff;
+       
+    }
+
+
+
+</style>
+<fieldset>
+    <legend>
+       MamaPut Restaurant
+    </legend>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    Customer :
+                    @Html.DropDownList("Customer", new SelectList(Model.Item1, "Value", "Text"),
+                   new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    Payment  Type :
+                    @Html.DropDownList("PaymentType", new SelectList(Model.Item3, "Value", "Text"),
+                   new { @class = "form-control" })
+                </div>
+            </div>
+        </div>
+    </div>
+</fieldset>
+<fieldset>
+    <legend> Food Menu </legend>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    Food:
+                    @Html.DropDownList("Food", new SelectList(Model.Item2, "Value", "Text"),
+                  new { @class = "form-control" })
+                </div>
+
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    Food Price:
+                    <input type="text" readonly="readonly" id="txtUnitPrice" value="0.00" name="UnitPrice" class="form-control" />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    Quantity:
+                    <input type="text" id="txtQunatityPrice" value="0.00" name="Quantity" class="form-control" />
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            
+            <div class="col-md-4">
+                <div class="form-group">
+                    Discount:
+                    <input type="text" id="txtDiscount" value="0.00" name="Discount" class="form-control" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    Total:
+                    <input type="text" readonly="readonly" id="txtTotal" value="0.00" name="Total" class="form-control" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <input type="button" style="margin-top: 20px" value="Add to List" name="AddToList" id="btnAddToList" class="btn btn-success" />
+                </div>
+            </div>
+        </div>
+    </div>
+</fieldset>
+<fieldset>
+    <legend>
+        Restaurant Listed Item
+    </legend>
+    <table style="width:100%">
+        <thead>
+            <tr>
+                <th hidden>
+                    Food Id
+                </th>
+                <th>
+                    Food Item
+                </th>
+                <th>
+                    Food Price
+                </th>
+                <th>
+                    Quantity
+                </th>
+                <th>
+                    Discount
+                </th>
+                <th>
+                    Total
+                </th>
+                <th>
+                    Action
+                </th>
+            </tr>
+        </thead>
+    </table>
+   
+</fieldset>
+
